@@ -2119,6 +2119,39 @@ button{
 }
 
 
+/* CAKE VISUAL OVERRIDES — clean, cute, non-messy */
+#cakeIntro .cake-stage{width:560px;height:400px;transform:perspective(1200px) rotateX(4deg)}
+#cakeIntro .l1{width:380px;height:70px;bottom:42px}
+#cakeIntro .l2{width:350px;height:66px;bottom:130px}
+#cakeIntro .c1{width:368px;height:18px;bottom:112px}
+#cakeIntro .frost{width:334px;height:70px;bottom:198px}
+#cakeIntro .cake-topper{bottom:300px;font-size:24px}
+#cakeIntro .sprinkles{bottom:207px;width:275px}
+#cakeIntro .candle{bottom:274px;width:25px;height:76px}
+#cakeIntro .cake-plate{bottom:3px;width:470px;height:58px}
+
+/* Cake-only shape tuning: cleaner, airy tiers */
+#cakeIntro .layer{border-radius:20px 20px 28px 28px}
+#cakeIntro .layer:before{top:-10px;height:22px}
+#cakeIntro .frost{border-radius:48% 48% 26% 26%}
+#cakeIntro .frost:before{top:-8px;height:24px}
+.cake-wish-prompt{position:fixed!important;inset:0!important;z-index:1000!important;display:flex!important;align-items:center!important;justify-content:center!important;opacity:0;visibility:hidden;pointer-events:none;background:rgba(0,0,0,.01)}
+.cake-wish-prompt.show{opacity:1!important;visibility:visible!important;pointer-events:auto!important}
+.cake-wish-prompt.hide{opacity:0!important;visibility:hidden!important;pointer-events:none!important}
+.cake-wish-backdrop{position:absolute!important;inset:0!important;background:radial-gradient(circle at 50% 45%,rgba(255,188,211,.18),rgba(10,4,10,.84) 52%,rgba(2,1,3,.97) 100%)!important;backdrop-filter:blur(10px)}
+.cake-wish-card{position:relative!important;z-index:2!important;width:min(700px,90vw)!important;margin:0 auto!important;padding:54px 32px 46px!important;border-radius:34px!important;background:linear-gradient(145deg,rgba(47,20,36,.985),rgba(15,7,13,.985))!important;border:1px solid rgba(255,238,214,.20)!important;box-shadow:0 40px 130px rgba(0,0,0,.65)!important;text-align:center!important}
+.cake-wish-title{font-size:clamp(56px,9vw,94px)!important;margin:0!important}
+.cake-wish-text{max-width:520px!important;font-size:30px!important;margin:18px auto 0!important}
+.cake-blow-ready,#micStatus,.blow-meter{display:none!important}
+#celebrate{position:fixed!important;inset:0!important;width:100vw!important;height:100vh!important;min-height:100dvh!important;z-index:200000!important;display:none;align-items:center!important;justify-content:center!important;text-align:center!important;overflow:hidden;background:radial-gradient(circle at 50% 38%,rgba(255,205,220,.20),transparent 24%),radial-gradient(circle at 20% 80%,rgba(255,208,130,.12),transparent 24%),radial-gradient(circle at 82% 18%,rgba(184,164,239,.12),transparent 22%),rgba(8,6,9,.97)!important;backdrop-filter:blur(12px)}
+#celebrate.show{display:flex!important;animation:celebrateFullIn .35s ease both}
+@keyframes celebrateFullIn{from{opacity:0}to{opacity:1}}
+#celebrate .celebrate-inner{width:min(760px,90vw)!important;padding:42px 28px 38px!important;border-radius:34px!important;background:linear-gradient(145deg,rgba(58,28,49,.96),rgba(18,9,17,.98))!important;border:1px solid rgba(255,235,205,.24)!important;box-shadow:0 35px 100px rgba(0,0,0,.68)!important}
+#celebrate .cta{margin-top:10px}
+.celebrate-heart{font-size:54px;animation:heartPop 1s ease-in-out infinite alternate}
+@keyframes heartPop{to{transform:scale(1.15) rotate(5deg)}}
+@media(max-width:700px){.cake-wrap{height:405px!important;transform:scale(.78)!important;transform-origin:center top!important}}
+
 /* =========================================================
    CHAPTER 04 — MEMORY
    ========================================================= */
@@ -2415,28 +2448,46 @@ button{
 
 
 /* =========================================================
-   CAKE BUILDING
+   CAKE BUILDING — CUTE PARTY CAKE
    ========================================================= */
 
 #cakeIntro{
   background:
-    radial-gradient(
-      circle at 50% 20%,
-      #432631,
-      #100a0f 68%
-    );
-
+    radial-gradient(circle at 50% 16%, rgba(255,205,222,.14), transparent 27%),
+    radial-gradient(circle at 18% 70%, rgba(174,147,255,.10), transparent 24%),
+    linear-gradient(180deg,#25131f 0%,#140a12 54%,#0b070c 100%);
   color:#fff;
   text-align:center;
   min-height:100vh;
   overflow:hidden;
+  position:relative;
 }
+
+#cakeIntro:before{
+  content:"";
+  position:absolute;
+  inset:-20%;
+  pointer-events:none;
+  opacity:.7;
+  background:
+    radial-gradient(circle at 20% 20%,rgba(255,218,228,.07) 0 2px,transparent 3px),
+    radial-gradient(circle at 80% 35%,rgba(255,203,151,.08) 0 2px,transparent 3px),
+    radial-gradient(circle at 35% 78%,rgba(202,185,255,.08) 0 2px,transparent 3px);
+  background-size:130px 130px,170px 170px,210px 210px;
+  animation:cakeStars 9s linear infinite;
+}
+
+@keyframes cakeStars{
+  to{transform:translateY(-30px)}
+}
+
+#cakeIntro .chapter{position:relative;z-index:2}
 
 .cake-wrap{
   position:relative;
-  width:min(700px,94vw);
-  height:460px;
-  margin:25px auto 0;
+  width:min(720px,94vw);
+  height:440px;
+  margin:18px auto 0;
   display:flex;
   align-items:end;
   justify-content:center;
@@ -2444,17 +2495,39 @@ button{
 
 .cake-stage{
   position:relative;
-  width:470px;
-  height:330px;
-  transform:perspective(900px) rotateX(7deg);
-  filter:drop-shadow(0 35px 30px #0009);
+  width:500px;
+  height:385px;
+  transform:perspective(950px) rotateX(7deg);
+  filter:drop-shadow(0 36px 35px rgba(0,0,0,.52));
 }
 
-/* Everything starts invisible. The JavaScript reveals each part in order. */
+.cake-plate{
+  position:absolute;
+  left:50%;
+  bottom:0;
+  width:455px;
+  height:52px;
+  transform:translateX(-50%);
+  border-radius:50%;
+  background:radial-gradient(ellipse at center,#fffaf7 0 50%,#f1d6e1 51% 63%,#d59bb2 64% 100%);
+  box-shadow:0 8px 0 rgba(255,255,255,.07),0 20px 22px rgba(0,0,0,.24);
+  z-index:0;
+}
+
+.cake-plate:after{
+  content:"";
+  position:absolute;
+  inset:10px 50px;
+  border:2px dashed rgba(163,99,126,.25);
+  border-radius:50%;
+}
+
 #cakeIntro .cake-stage .layer,
 #cakeIntro .cake-stage .cream,
 #cakeIntro .cake-stage .frost,
-#cakeIntro .cake-stage .candle{
+#cakeIntro .cake-stage .candle,
+#cakeIntro .cake-stage .cake-topper,
+#cakeIntro .cake-stage .sprinkles{
   opacity:0;
 }
 
@@ -2462,270 +2535,242 @@ button{
   position:absolute;
   left:50%;
   transform:translateX(-50%);
-  width:400px;
-  height:92px;
-  border-radius:22px 22px 28px 28px;
-  background:linear-gradient(
-    90deg,
-    #7a4030,
-    #c27654 28%,
-    #8f4b37 52%,
-    #d08a64 76%,
-    #69382d
-  );
+  width:390px;
+  height:78px;
+  border-radius:26px 26px 30px 30px;
+  background:
+    linear-gradient(180deg,#d98e63 0%,#bb624b 46%,#8b3f38 100%);
+  border:2px solid rgba(94,38,41,.22);
   box-shadow:
-    inset 0 -12px 15px #4a241d55,
-    inset 0 7px 12px #f0ad8b55,
-    0 8px 12px #0005;
+    inset 0 7px 10px rgba(255,230,205,.28),
+    inset 0 -14px 17px rgba(82,28,29,.22),
+    0 8px 12px rgba(0,0,0,.28);
+  overflow:visible;
 }
 
 .layer:before{
   content:"";
   position:absolute;
-  left:5%;
-  right:5%;
-  top:-12px;
-  height:27px;
+  left:6%;right:6%;top:-12px;height:27px;
   border-radius:50%;
-  background:#f6e4d0;
-  box-shadow:inset 0 -5px 7px #d3bca4;
+  background:linear-gradient(180deg,#fbe9d7,#f3cdb9);
+  box-shadow:inset 0 -6px 8px rgba(172,98,74,.16),0 2px 4px rgba(0,0,0,.08);
 }
 
 .layer:after{
   content:"";
   position:absolute;
-  left:7%;
-  right:7%;
-  bottom:-5px;
-  height:16px;
+  left:9%;right:9%;bottom:9px;height:8px;
   border-radius:50%;
-  background:#57281f55;
+  background:rgba(72,26,31,.16);
 }
 
-.l1{bottom:15px;}
-.l2{bottom:95px;width:380px;}
-.l3{bottom:175px;width:355px;}
+.l1{bottom:38px;}
+.l2{bottom:112px;width:370px;}
+.l3{bottom:186px;width:350px;}
 
 .cream{
   position:absolute;
   left:50%;
   transform:translateX(-50%);
-  height:25px;
+  height:27px;
   border-radius:50%;
-  background:linear-gradient(180deg,#fff9ef,#e9d4bd);
-  box-shadow:0 5px 8px #0002;
+  background:linear-gradient(180deg,#fffdf7,#ffdfe9 62%,#efc5d5 100%);
+  box-shadow:0 6px 10px rgba(77,38,49,.16);
   z-index:4;
 }
 
-.c1{bottom:96px;width:385px;}
-.c2{bottom:176px;width:360px;}
+.c1{bottom:112px;width:378px;}
+.c2{bottom:186px;width:358px;}
 
 .frost{
   position:absolute;
-  bottom:220px;
+  bottom:226px;
   left:50%;
   transform:translateX(-50%);
-  width:365px;
-  height:90px;
-  border-radius:50% 50% 30% 30%;
-  background:linear-gradient(180deg,#fffaf2,#ead9c5);
-  box-shadow:inset 0 -16px 20px #c9ad95;
+  width:362px;
+  height:95px;
+  border-radius:50% 50% 28% 28%;
+  background:
+    linear-gradient(180deg,#fffdf9 0%,#ffe8ef 55%,#f7cad8 100%);
+  box-shadow:
+    inset 0 -18px 20px rgba(185,122,144,.17),
+    0 8px 13px rgba(0,0,0,.16);
   z-index:5;
+}
+
+.frost:before{
+  content:"";
+  position:absolute;left:20px;right:20px;top:-10px;height:28px;
+  border-radius:50%;
+  background:linear-gradient(180deg,#fffefb,#ffe4ec);
+  box-shadow:0 4px 0 rgba(218,165,180,.22);
 }
 
 .drip{
   position:absolute;
   top:50px;
-  width:23px;
+  width:28px;
   height:55px;
   border-radius:0 0 18px 18px;
-  background:#f7ead8;
+  background:linear-gradient(180deg,#fff9f3,#f8d8e2);
+  box-shadow:0 3px 4px rgba(99,48,69,.08);
 }
-.dr1{left:70px;}
-.dr2{left:145px;height:38px;}
-.dr3{right:90px;height:48px;}
-.dr4{right:45px;height:28px;}
+.dr1{left:58px;height:52px}.dr2{left:132px;height:39px}.dr3{right:105px;height:58px}.dr4{right:47px;height:31px}
 
 .berry{
   position:absolute;
-  width:22px;
-  height:22px;
-  background:#a83c45;
+  width:24px;height:24px;
   border-radius:50%;
+  background:radial-gradient(circle at 30% 24%,#ffb0bb 0 10%,#ee687b 30%,#a72645 78%);
   z-index:8;
-  box-shadow:inset -5px -5px 5px #681d2a;
+  box-shadow:inset -5px -5px 6px rgba(99,22,39,.28),0 5px 8px rgba(96,29,45,.18);
 }
-
-.b1{left:95px;top:22px;}
-.b2{right:105px;top:28px;}
-.b3{left:185px;top:8px;}
+.b1{left:84px;top:18px}.b2{right:94px;top:25px}.b3{left:178px;top:5px}
 
 .chocdrop{
   position:absolute;
-  width:42px;
-  height:10px;
-  background:#5b2b24;
+  width:39px;height:9px;
+  background:#6f3d45;
   border-radius:50%;
   z-index:8;
+  box-shadow:0 2px 4px rgba(0,0,0,.16);
+}
+.cd1{left:120px;top:57px}.cd2{right:123px;top:63px}
+
+.cake-topper{
+  position:absolute;
+  left:50%;
+  bottom:322px;
+  transform:translateX(-50%);
+  z-index:13;
+  font-family:Caveat,cursive;
+  font-size:24px;
+  color:#fff6e9;
+  text-shadow:0 2px 7px rgba(0,0,0,.35);
+  white-space:nowrap;
 }
 
-.cd1{left:125px;top:55px;}
-.cd2{right:140px;top:68px;}
+.cake-topper:before,.cake-topper:after{
+  content:"♡";
+  position:absolute;
+  color:#ffb7c5;
+  font-size:19px;
+  top:7px;
+}
+.cake-topper:before{left:-25px;transform:rotate(-13deg)}
+.cake-topper:after{right:-25px;transform:rotate(13deg)}
 
-/* candle */
+.sprinkles{
+  position:absolute;
+  bottom:246px;
+  left:50%;
+  width:300px;height:45px;
+  transform:translateX(-50%);
+  z-index:9;
+  pointer-events:none;
+}
+
+.sprinkles i{
+  position:absolute;
+  width:7px;height:15px;
+  border-radius:8px;
+  transform:rotate(var(--r));
+  background:var(--sc);
+}
+
+.s1{left:9%;top:15%;--r:-25deg;--sc:#e78da6}.s2{left:22%;top:34%;--r:25deg;--sc:#c0a0ea}.s3{left:37%;top:8%;--r:-12deg;--sc:#f2b45f}.s4{left:53%;top:29%;--r:18deg;--sc:#82b995}.s5{left:67%;top:5%;--r:-28deg;--sc:#e78da6}.s6{left:80%;top:25%;--r:22deg;--sc:#d6a2ed}
+
 .candle{
   position:absolute;
   bottom:306px;
   left:50%;
-  width:22px;
-  height:88px;
+  width:24px;height:79px;
   transform:translateX(-50%);
-  background:repeating-linear-gradient(
-    45deg,
-    #f3b3b0 0 9px,
-    #fff1df 9px 18px
-  );
-  border-radius:7px;
-  z-index:12;
-  box-shadow:inset -4px 0 6px #0002;
+  background:repeating-linear-gradient(45deg,#f59fb1 0 8px,#fff4ee 8px 16px);
+  border-radius:8px;
+  border:2px solid rgba(137,68,91,.2);
+  z-index:14;
+  box-shadow:inset -4px 0 6px rgba(0,0,0,.1),0 5px 8px rgba(0,0,0,.13);
+}
+
+.candle:before{
+  content:"";position:absolute;left:4px;right:4px;top:-4px;height:8px;border-radius:50%;background:#fff5ef;
 }
 
 .flame{
   position:absolute;
-  top:-42px;
-  left:50%;
-  width:25px;
-  height:38px;
+  top:-42px;left:50%;
+  width:27px;height:40px;
   transform:translateX(-50%) rotate(2deg);
-  background:radial-gradient(
-    circle at 50% 70%,
-    #fff6a5 0 22%,
-    #ffb129 35%,
-    #ec5b22 65%,
-    transparent 70%
-  );
-  filter:drop-shadow(0 0 14px #ff9e34);
-  animation:flicker .12s infinite alternate;
+  background:radial-gradient(circle at 50% 71%,#fffbd0 0 19%,#ffd04a 34%,#ff7b32 60%,transparent 72%);
+  filter:drop-shadow(0 0 15px #ff9b3b);
+  animation:flicker .11s infinite alternate;
+  transform-origin:50% 95%;
 }
 
-.flame.off{display:none;}
+.flame.off{display:none}
 
-@keyframes flicker{
-  to{
-    transform:translateX(-50%) scale(.92) rotate(-3deg);
-  }
+.flame.blowing{
+  animation:flameWind .12s ease-in-out infinite alternate;
+  transform:translateX(-50%) rotate(24deg) skewX(-8deg) scaleX(.48) scaleY(.78);
+  opacity:.48;
 }
+
+@keyframes flameWind{to{transform:translateX(-45%) rotate(28deg) skewX(-7deg) scaleX(.48) scaleY(.7)}}
+@keyframes flicker{to{transform:translateX(-50%) scale(.9,.96) rotate(-4deg)}}
 
 /* Automatic build animations */
-.cake-piece-build{
-  animation:cakePieceIn .75s cubic-bezier(.16,.84,.2,1) both;
-}
-
-.cake-soft-build{
-  animation:cakeSoftIn .62s cubic-bezier(.16,.84,.2,1) both;
-}
-
-.cake-decor-build{
-  animation:cakeDecorIn .6s cubic-bezier(.16,.84,.2,1) both;
-}
-
-.cake-candle-build{
-  animation:cakeCandleIn .8s cubic-bezier(.16,.84,.2,1) both;
-}
-
-.cake-decor-build,
-.cake-piece-build,
-.cake-soft-build,
-.cake-candle-build{
-  opacity:1 !important;
-}
+.cake-piece-build{animation:cakePieceIn .82s cubic-bezier(.16,.84,.2,1) both}
+.cake-soft-build{animation:cakeSoftIn .66s cubic-bezier(.16,.84,.2,1) both}
+.cake-decor-build{animation:cakeDecorIn .62s cubic-bezier(.16,.84,.2,1) both}
+.cake-candle-build{animation:cakeCandleIn .82s cubic-bezier(.16,.84,.2,1) both}
+.cake-decor-build,.cake-piece-build,.cake-soft-build,.cake-candle-build{opacity:1 !important}
 
 @keyframes cakePieceIn{
-  0%{
-    opacity:0;
-    transform:translateX(-50%) translateY(-145px) rotate(-3deg) scale(.9);
-  }
-  60%{
-    opacity:1;
-    transform:translateX(-50%) translateY(8px) rotate(1deg) scale(1.03);
-  }
-  100%{
-    opacity:1;
-    transform:translateX(-50%) translateY(0) rotate(0) scale(1);
-  }
+  0%{opacity:0;transform:translateX(-50%) translateY(-140px) rotate(-5deg) scale(.88)}
+  62%{opacity:1;transform:translateX(-50%) translateY(9px) rotate(1deg) scale(1.045)}
+  100%{opacity:1;transform:translateX(-50%) translateY(0) rotate(0) scale(1)}
 }
-
 @keyframes cakeSoftIn{
-  0%{
-    opacity:0;
-    transform:translateX(-50%) scaleX(.25) scaleY(.65);
-  }
-  70%{
-    opacity:1;
-    transform:translateX(-50%) scaleX(1.04) scaleY(1.04);
-  }
-  100%{
-    opacity:1;
-    transform:translateX(-50%) scaleX(1) scaleY(1);
-  }
+  0%{opacity:0;transform:translateX(-50%) scaleX(.2) scaleY(.6)}
+  70%{opacity:1;transform:translateX(-50%) scaleX(1.05) scaleY(1.05)}
+  100%{opacity:1;transform:translateX(-50%) scaleX(1) scaleY(1)}
 }
-
 @keyframes cakeDecorIn{
-  0%{
-    opacity:0;
-    transform:translateY(-42px) scale(.15) rotate(-20deg);
-  }
-  70%{
-    opacity:1;
-    transform:translateY(5px) scale(1.08) rotate(4deg);
-  }
-  100%{
-    opacity:1;
-    transform:translateY(0) scale(1) rotate(0);
-  }
+  0%{opacity:0;transform:translateY(-40px) scale(.05) rotate(-25deg)}
+  70%{opacity:1;transform:translateY(4px) scale(1.1) rotate(5deg)}
+  100%{opacity:1;transform:translateY(0) scale(1) rotate(0)}
 }
-
 @keyframes cakeCandleIn{
-  0%{
-    opacity:0;
-    transform:translateX(-50%) translateY(-55px) rotate(-5deg) scale(.6);
-  }
-  70%{
-    opacity:1;
-    transform:translateX(-50%) translateY(5px) rotate(2deg) scale(1.05);
-  }
-  100%{
-    opacity:1;
-    transform:translateX(-50%) translateY(0) rotate(0) scale(1);
-  }
+  0%{opacity:0;transform:translateX(-50%) translateY(-58px) rotate(-7deg) scale(.58)}
+  70%{opacity:1;transform:translateX(-50%) translateY(4px) rotate(2deg) scale(1.06)}
+  100%{opacity:1;transform:translateX(-50%) translateY(0) rotate(0) scale(1)}
 }
 
-/* builder is kept only for backward compatibility with old markup */
-.builder{display:none;}
+.progress{height:5px;background:#ffffff18;max-width:500px;margin:10px auto;border-radius:99px;overflow:hidden}
+.progress i{display:block;height:100%;width:0;background:linear-gradient(90deg,#f28da4,#f4c56e,#bfa2ef);transition:width .5s}
 
-.progress{
-  height:5px;
-  background:#ffffff18;
-  max-width:500px;
-  margin:15px auto;
-  border-radius:99px;
-  overflow:hidden;
+.cake-auto-note{font-family:Caveat,cursive;font-size:24px;opacity:.86;min-height:34px;margin-top:12px;color:#ffe9d8}
+
+.cake-blow-ready{
+  display:inline-flex;align-items:center;justify-content:center;gap:10px;
+  margin:4px auto 0;padding:10px 16px;border-radius:999px;
+  border:1px solid rgba(255,232,214,.18);
+  background:rgba(255,255,255,.045);
+  color:#f8dfc8;font-size:11px;letter-spacing:.12em;text-transform:uppercase;
+  opacity:0;transform:translateY(7px);pointer-events:none;transition:.45s ease;
 }
+.cake-blow-ready.show{opacity:.95;transform:none}
+.cake-blow-ready.is-listening{border-color:rgba(130,198,154,.32);}
+.cake-blow-ready.is-listening .dot{background:#82c69a;box-shadow:0 0 16px rgba(130,198,154,.75);}
+.cake-blow-ready .dot{width:7px;height:7px;border-radius:50%;background:#f4bd77;box-shadow:0 0 13px rgba(244,189,119,.9);animation:wishPulse .8s infinite alternate}
 
-.progress i{
-  display:block;
-  height:100%;
-  width:0;
-  background:#f5bf78;
-  transition:width .5s;
-}
-
-.cake-auto-note{
-  font-family:Caveat,cursive;
-  font-size:24px;
-  opacity:.8;
-  min-height:34px;
-  margin-top:18px;
+@media(max-width:700px){
+  .cake-wrap{height:400px;transform:scale(.8);transform-origin:center top}
+  .cake-stage{width:500px}
+  .cake-auto-note{font-size:21px}
+  .cake-blow-ready{font-size:9px}
 }
 
 /* =========================================================
@@ -2912,6 +2957,23 @@ button{
 
 #celebrate.show{
   display:flex;
+  animation:celebrateIn .35s ease both;
+}
+
+#celebrate::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:
+    radial-gradient(circle at 50% 42%, rgba(255,205,220,.18), transparent 28%),
+    radial-gradient(circle at 20% 80%, rgba(255,208,130,.12), transparent 22%),
+    radial-gradient(circle at 82% 18%, rgba(184,164,239,.12), transparent 20%);
+  pointer-events:none;
+}
+
+@keyframes celebrateIn{
+  from{opacity:0}
+  to{opacity:1}
 }
 
 .celebrate-inner{
@@ -2985,12 +3047,10 @@ button{
 
 #cut{
   background:#f3e8d7;
-
   text-align:center;
-
   min-height:85vh;
-
-  display:none;
+  display:block!important;
+  scroll-margin-top:20px;
 }
 
 .cut-stage{
@@ -3113,7 +3173,7 @@ button{
 #blow:before{content:"";position:absolute;inset:-20%;background:radial-gradient(circle at 50% 58%,rgba(246,198,110,.16),transparent 25%,transparent 60%);pointer-events:none;opacity:.75}
 #blow .chapter{position:relative;z-index:3}
 .blow-burst{position:fixed;inset:0;pointer-events:none;z-index:150;overflow:hidden}
-.blow-particle{position:absolute;left:50%;top:54%;width:8px;height:8px;border-radius:2px;background:var(--pc);animation:blowBurst 1.35s cubic-bezier(.15,.75,.2,1) forwards;}
+.blow-particle{position:absolute;left:var(--ox,50vw);top:var(--oy,54vh);width:8px;height:8px;border-radius:3px;background:var(--pc);animation:blowBurst 1.35s cubic-bezier(.15,.75,.2,1) forwards;}
 @keyframes blowBurst{0%{transform:translate(-50%,-50%) scale(.2) rotate(0deg);opacity:0}12%{opacity:1}100%{transform:translate(calc(-50% + var(--dx)),calc(-50% + var(--dy))) rotate(var(--rot)) scale(1);opacity:0}}
 #celebrate{backdrop-filter:blur(10px)}
 #celebrate .celebrate-inner{transform:translateY(20px) scale(.92);transition:transform .5s cubic-bezier(.2,.8,.2,1),opacity .35s}
@@ -3152,49 +3212,94 @@ button{
 @keyframes slicePop{70%{opacity:1;transform:translateY(-3px) rotate(3deg) scale(1.03)}100%{opacity:1;transform:translateY(0) rotate(4deg) scale(1)}}
 @media (max-width:720px){.cut-stage{height:430px}.cut-cake{transform:scale(.78)}.cake-top-cream{transform:translateX(-50%) scale(.78)}.cut-berry{transform:scale(.78)}.cake-slice-pop{right:4%;transform:scale(.78)}.cut-instruction{font-size:24px}}
 /* =========================================================
-   FINAL
+   FINAL — Aesthetic Letter Card
    ========================================================= */
-
 .final{
   background:
-    radial-gradient(
-      circle at 50% 20%,
-      #49303a,
-      #10090f 65%
-    );
-
+    radial-gradient(circle at 20% 15%, rgba(255,236,218,.16), transparent 28%),
+    radial-gradient(circle at 82% 75%, rgba(207,142,166,.12), transparent 30%),
+    linear-gradient(145deg,#24131f 0%,#130b12 58%,#09070b 100%);
   color:#fff;
-
   text-align:center;
+  overflow:hidden;
 }
-
+.final > div{
+  width:min(760px,92vw);
+  margin:auto;
+  padding:46px 34px 50px;
+  position:relative;
+}
+.final > div:before{
+  content:"";
+  position:absolute;
+  inset:0;
+  border:1px solid rgba(255,235,220,.14);
+  border-radius:34px;
+  background:linear-gradient(145deg,rgba(255,255,255,.07),rgba(255,255,255,.025));
+  box-shadow:0 30px 90px rgba(0,0,0,.42), inset 0 1px 0 rgba(255,255,255,.08);
+  backdrop-filter:blur(12px);
+}
+.final > div > *{position:relative;z-index:1}
+.final > div > div:first-child{
+  width:92px;
+  height:92px;
+  margin:0 auto 18px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border-radius:50%;
+  font-size:52px !important;
+  background:rgba(255,244,232,.08);
+  border:1px solid rgba(255,230,208,.18);
+  box-shadow:0 12px 35px rgba(0,0,0,.24);
+  animation:finalFloat 4s ease-in-out infinite;
+}
+@keyframes finalFloat{0%,100%{transform:translateY(0) rotate(-2deg)}50%{transform:translateY(-8px) rotate(2deg)}}
+.final .eyebrow{
+  font-family:Caveat,cursive;
+  font-size:24px;
+  color:#e8b9c5;
+  letter-spacing:.04em;
+  margin-bottom:4px;
+}
 .final h2{
-  font-family:"Playfair Display";
-
-  font-size:
-    clamp(55px,12vw,145px);
-
-  line-height:.85;
-
-  margin:15px 0;
+  font-family:"Playfair Display",serif;
+  font-size:clamp(48px,8vw,86px);
+  line-height:.95;
+  margin:8px 0 18px;
+  font-weight:700;
 }
-
 .final h2 span{
   display:block;
-
-  color:#f2c58f;
-
+  margin-top:5px;
+  color:#f3c796;
   font-style:italic;
 }
-
-.signature{
-  font-family:Caveat;
-
-  font-size:30px;
-
-  color:#dfcbd5;
+.final .signature{
+  font-family:Caveat,cursive;
+  font-size:31px;
+  line-height:1.25;
+  color:#f0d8d9;
+  margin:0 auto 8px;
 }
-
+.final p[style]{
+  max-width:560px !important;
+  margin:20px auto 24px !important;
+  line-height:1.85 !important;
+  color:#e2d4d9 !important;
+  font-size:16px;
+}
+.final > div > div:last-child{
+  font-size:24px !important;
+  letter-spacing:5px;
+  opacity:.9;
+}
+@media(max-width:720px){
+  .final > div{padding:34px 22px 38px}
+  .final > div:before{border-radius:26px}
+  .final h2{font-size:clamp(42px,13vw,68px)}
+  .final .signature{font-size:27px}
+}
 
 /* =========================================================
    MUSIC BUTTON
@@ -3569,6 +3674,255 @@ button{
 
 }
 
+/* FINAL CAKE+POPUP OVERRIDE V2 */
+#cakeIntro .cake-stage{position:relative!important;width:560px!important;height:400px!important;transform:perspective(1200px) rotateX(4deg)!important}
+#cakeIntro .l1{width:420px!important;height:78px!important;bottom:55px!important}
+#cakeIntro .l2{width:392px!important;height:74px!important;bottom:127px!important}
+#cakeIntro .l3{width:366px!important;height:72px!important;bottom:196px!important}
+#cakeIntro .c1{width:405px!important;bottom:124px!important}
+#cakeIntro .c2{width:379px!important;bottom:193px!important}
+#cakeIntro .frost{width:378px!important;height:92px!important;bottom:235px!important}
+#cakeIntro .cake-topper{bottom:333px!important;font-size:25px!important}
+#cakeIntro .sprinkles{bottom:251px!important}
+#cakeIntro .candle{bottom:310px!important;width:27px!important;height:78px!important}
+#cakeIntro .cake-plate{bottom:3px!important;width:510px!important;height:66px!important}
+.cake-wish-prompt{position:fixed!important;inset:0!important;z-index:99999!important;display:flex!important;align-items:center!important;justify-content:center!important;padding:24px!important;opacity:0!important;visibility:hidden!important;pointer-events:none!important}
+.cake-wish-prompt.show{opacity:1!important;visibility:visible!important;pointer-events:auto!important}
+.cake-wish-prompt.hide{opacity:0!important;visibility:hidden!important;pointer-events:none!important}
+.cake-wish-backdrop{position:absolute!important;inset:0!important;background:rgba(5,2,8,.90)!important;backdrop-filter:blur(10px)!important}
+.cake-wish-card{position:relative!important;z-index:2!important;width:min(720px,90vw)!important;padding:54px 32px 46px!important;border-radius:36px!important;text-align:center!important;background:linear-gradient(145deg,#321728,#120710)!important;box-shadow:0 40px 150px rgba(0,0,0,.72)!important}
+.cake-wish-title{font-size:clamp(58px,9vw,96px)!important;margin:0!important;color:#fff8ef!important}
+.cake-wish-text{font-size:30px!important;max-width:540px!important;margin:18px auto 0!important;color:#fff1e7!important}
+.cake-blow-ready{display:none!important}
+#celebrate{position:fixed!important;inset:0!important;z-index:100000!important;display:none!important;align-items:center!important;justify-content:center!important;overflow:hidden!important}
+#celebrate.show{display:flex!important}
+@media(max-width:700px){#cakeIntro .cake-wrap{height:405px!important;transform:scale(.78)!important;transform-origin:center top!important}.cake-wish-card{padding:48px 22px 36px!important}.cake-wish-text{font-size:27px!important}}
+
+/* =========================================================
+   DEMO CAKE — SAME CAT CAKE + CONTROLS
+   ========================================================= */
+#cakeIntro .control-toolbar{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin:16px auto 22px;max-width:720px}
+#cakeIntro .control-group-title{width:100%;font-family:Caveat,cursive;font-size:24px;color:#f7d4b4;margin-bottom:2px}
+#cakeIntro .flavor-btn,#cakeIntro .option-btn{padding:8px 18px;border-radius:99px;border:1.5px solid rgba(255,255,255,.2);background:rgba(255,255,255,.08);color:#fff;font-size:14px;font-weight:600;transition:all .25s ease;user-select:none}
+#cakeIntro .flavor-btn.active,#cakeIntro .option-btn.active,#cakeIntro .flavor-btn:hover,#cakeIntro .option-btn:hover{background:#f7d4b4;color:#2b1420;border-color:#f7d4b4;box-shadow:0 4px 15px rgba(247,212,180,.35);transform:translateY(-2px)}
+#cakeIntro .cat-cake-container{position:relative;width:min(380px,92vw);height:420px;margin:10px auto 30px;display:flex;align-items:center;justify-content:center}
+#cakeIntro .cake-plate-base{position:absolute;bottom:12px;width:360px;height:42px;background:radial-gradient(ellipse at center,#fff 0%,#eddcd0 70%,#c4b0a2 100%);border-radius:50%;box-shadow:0 20px 40px rgba(0,0,0,.5),inset 0 2px 6px rgba(255,255,255,.8);z-index:1;border:1px solid rgba(255,255,255,.4)}
+#cakeIntro .cat-cake{position:absolute;bottom:32px;width:290px;z-index:3;filter:drop-shadow(0 18px 18px rgba(0,0,0,.22))}
+#cakeIntro .cake-tier-bottom{width:290px;height:115px;background:var(--cake-base);border-radius:24px 24px 34px 34px;position:relative;box-shadow:inset 0 -16px 22px rgba(0,0,0,.22),0 12px 28px rgba(0,0,0,.4);transition:background .4s ease;overflow:hidden}
+#cakeIntro .cake-drip-svg{position:absolute;top:0;left:0;width:100%;height:48px;fill:var(--cake-drip);transition:fill .4s ease;filter:drop-shadow(0 3px 3px rgba(0,0,0,.15))}
+#cakeIntro .cake-tier-top{width:220px;height:120px;margin:0 auto -8px;background:var(--cake-top-base);border-radius:40px 40px 24px 24px;position:relative;z-index:4;transition:background .4s ease;box-shadow:inset 0 -10px 18px rgba(0,0,0,.12),0 8px 20px rgba(0,0,0,.25)}
+#cakeIntro .cat-ear{position:absolute;top:-28px;width:50px;height:50px;background:var(--cake-top-base);border-radius:12px 38px 6px 38px;transition:background .4s ease;box-shadow:0 -4px 10px rgba(0,0,0,.15)}
+#cakeIntro .cat-ear.left{left:22px;transform:rotate(-15deg)}
+#cakeIntro .cat-ear.right{right:22px;transform:rotate(15deg) scaleX(-1)}
+#cakeIntro .cat-ear-inner{position:absolute;inset:8px;background:var(--cake-drip);border-radius:8px 28px 4px 28px;opacity:.85;transition:background .4s ease}
+#cakeIntro .cat-face{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:6;pointer-events:none}
+#cakeIntro .cat-eyes{display:flex;gap:58px;margin-top:10px}
+#cakeIntro .cat-eye{width:15px;height:15px;border-bottom:3.5px solid #3d2027;border-radius:50%;transition:all .3s ease}
+#cakeIntro .cat-face.wink .cat-eye.right{height:2px;border-bottom:3.5px solid #3d2027;transform:rotate(-12deg) translateY(4px)}
+#cakeIntro .cat-face.starry .cat-eye{border:0;width:18px;height:18px;position:relative}
+#cakeIntro .cat-face.starry .cat-eye::after{content:"★";color:#e7b85a;font-size:20px;position:absolute;top:-8px;left:-2px}
+#cakeIntro .cat-face.sleepy .cat-eye{border-bottom:0;border-top:3.5px solid #3d2027}
+#cakeIntro .cat-nose{width:10px;height:7px;background:#e8898c;border-radius:50% 50% 80% 80%;margin-top:4px}
+#cakeIntro .cat-whiskers{position:absolute;top:55px;width:100%;display:flex;justify-content:space-between;padding:0 18px}
+#cakeIntro .whisker-group{display:flex;flex-direction:column;gap:4px}
+#cakeIntro .whisker{width:24px;height:2px;background:rgba(61,32,39,.4);border-radius:2px}
+#cakeIntro .whisker-group.left .whisker:nth-child(1){transform:rotate(8deg)}
+#cakeIntro .whisker-group.left .whisker:nth-child(2){transform:rotate(-5deg)}
+#cakeIntro .whisker-group.right .whisker:nth-child(1){transform:rotate(-8deg)}
+#cakeIntro .whisker-group.right .whisker:nth-child(2){transform:rotate(5deg)}
+#cakeIntro .cat-blush{position:absolute;top:52px;width:100%;display:flex;justify-content:space-between;padding:0 38px}
+#cakeIntro .blush-dot{width:16px;height:10px;background:rgba(232,137,140,.45);border-radius:50%;filter:blur(1px)}
+#cakeIntro .toppings-layer{position:absolute;top:8px;left:50%;transform:translateX(-50%);width:180px;height:30px;display:flex;justify-content:space-around;z-index:5;pointer-events:none;opacity:0;transition:opacity .3s ease}
+#cakeIntro .toppings-layer.active{opacity:1}
+#cakeIntro .sprinkle{width:8px;height:4px;border-radius:4px;transform:rotate(25deg)}
+#cakeIntro .candles-group{position:absolute;top:-62px;left:50%;transform:translateX(-50%);display:flex;gap:16px;z-index:10}
+#cakeIntro .cake-candle{position:relative;width:14px;height:58px;background:repeating-linear-gradient(45deg,#fff 0 6px,#e8898c 6px 12px);border-radius:8px;box-shadow:0 4px 8px rgba(0,0,0,.25)}
+#cakeIntro .candle-wick{position:absolute;top:-8px;left:50%;transform:translateX(-50%);width:3px;height:9px;background:#333}
+#cakeIntro .candle-flame{position:absolute;top:-34px;left:50%;transform:translateX(-50%);width:22px;height:32px;background:radial-gradient(circle at 50% 80%,#fff 0%,#ffdf6d 35%,#ff7b00 70%,transparent 100%);border-radius:50% 50% 35% 35%;filter:drop-shadow(0 0 14px #ffb703);animation:demoFlameFlicker .15s ease-in-out infinite alternate}
+#cakeIntro .candle-flame.blowing{animation:demoFlameBlow .12s ease-in-out infinite alternate;transform:translateX(-50%) skewX(-12deg) scaleX(.86)}
+#cakeIntro .candle-flame.out{opacity:0;transform:translateX(-50%) scale(0);transition:all .35s ease}
+#cakeIntro .smoke-particle{position:absolute;top:-25px;left:50%;width:8px;height:8px;background:rgba(220,220,220,.7);border-radius:50%;pointer-events:none;opacity:0}
+#cakeIntro .smoke-particle.active{animation:demoSmokeRise 1.2s ease-out forwards}
+#cakeIntro .cake-built-part{opacity:0;transform:translateY(18px) scale(.98);filter:blur(3px)}
+#cakeIntro .cake-built-part.show{opacity:1;transform:none;filter:none;transition:opacity .7s ease,transform .7s cubic-bezier(.2,.8,.2,1),filter .7s ease}
+#cakeIntro .cake-stage,#cakeIntro .cat-cake{display:block!important;visibility:visible!important}
+#cakeIntro .cake-built-part{will-change:opacity,transform,filter}
+#cakeIntro #cakeTopTier.cake-built-part.show{transition-duration:.8s}
+#cakeIntro #cakeBottomTier.cake-built-part.show{transition-duration:.75s}
+@keyframes demoFlameFlicker{0%{transform:translateX(-50%) scale(1)}100%{transform:translateX(-50%) scale(1.08) rotate(2deg)}}
+@keyframes demoFlameBlow{0%{transform:translateX(-50%) skewX(-10deg) scale(.82,.96)}100%{transform:translateX(-50%) skewX(-24deg) scale(.55,.94)}}
+@keyframes demoSmokeRise{0%{opacity:.8;transform:translate(-50%,0) scale(1)}100%{opacity:0;transform:translate(-50%,-45px) scale(3);filter:blur(4px)}}
+@media(max-width:700px){#cakeIntro .cat-cake-container{height:390px;transform:scale(.88);transform-origin:center top}#cakeIntro .control-toolbar{gap:8px}#cakeIntro .flavor-btn,#cakeIntro .option-btn{font-size:13px;padding:7px 13px}}
+
+
+/* EMERGENCY CAKE VISIBILITY FIX — keep the demo cake visible */
+#cakeIntro .cat-cake-container{position:relative!important;display:flex!important;visibility:visible!important;opacity:1!important;z-index:20!important;}
+#cakeIntro .cat-cake{position:absolute!important;display:block!important;visibility:visible!important;opacity:1!important;z-index:30!important;bottom:32px!important;left:50%!important;transform:translateX(-50%)!important;}
+#cakeIntro #cakeBottomTier,#cakeIntro #cakeTopTier{display:block!important;visibility:visible!important;opacity:1!important;transform:none!important;filter:none!important;}
+#cakeIntro .cake-tier-bottom,#cakeIntro .cake-tier-top{visibility:visible!important;}
+#cakeIntro .cake-plate-base{display:block!important;visibility:visible!important;opacity:1!important;z-index:1!important;}
+#cakeIntro .cat-face,#cakeIntro .cat-ear,#cakeIntro .cat-ear-inner{visibility:visible!important;}
+
+/* =========================================================
+   SIMPLE CAKE OVERRIDES
+   ========================================================= */
+#cakeIntro{
+  background:radial-gradient(circle at 50% 18%,#3c2030 0%,#160b15 62%,#090408 100%) !important;
+  min-height:100vh !important;
+  overflow:hidden;
+}
+#cakeIntro .chapter{position:relative;z-index:5}
+.simple-cake-wrap{
+  position:relative;
+  width:min(460px,92vw);
+  height:410px;
+  margin:24px auto 4px;
+  display:flex;
+  align-items:flex-end;
+  justify-content:center;
+}
+.simple-cake-plate{
+  position:absolute;
+  bottom:20px;
+  width:min(400px,86vw);
+  height:42px;
+  border-radius:50%;
+  background:radial-gradient(ellipse at center,#fff 0%,#ead9cf 72%,#b9a59a 100%);
+  box-shadow:0 18px 36px rgba(0,0,0,.5);
+}
+.simple-cake{
+  position:absolute;
+  bottom:42px;
+  width:290px;
+  height:305px;
+  z-index:3;
+}
+.simple-cake-bottom{
+  position:absolute;
+  left:0;
+  bottom:0;
+  width:290px;
+  height:112px;
+  border-radius:24px 24px 32px 32px;
+  background:#e5989b;
+  box-shadow:inset 0 -16px 20px rgba(0,0,0,.18),0 12px 28px rgba(0,0,0,.38);
+  overflow:hidden;
+}
+.simple-drip{
+  position:absolute;
+  left:0;
+  top:0;
+  width:100%;
+  height:40px;
+  background:#f5b7cc;
+  border-radius:20px 20px 10px 10px;
+}
+.simple-cake-name{
+  position:absolute;
+  left:0;right:0;bottom:28px;
+  text-align:center;
+  color:#fff;
+  font-size:12px;
+  font-weight:700;
+  letter-spacing:.24em;
+  text-transform:uppercase;
+}
+.simple-cake-top{
+  position:absolute;
+  left:35px;
+  bottom:102px;
+  width:220px;
+  height:120px;
+  border-radius:40px 40px 24px 24px;
+  background:#fff8ef;
+  box-shadow:inset 0 -10px 18px rgba(0,0,0,.12),0 8px 20px rgba(0,0,0,.25);
+}
+.simple-ear{
+  position:absolute;
+  top:-28px;
+  width:50px;height:50px;
+  background:#fff8ef;
+  border-radius:12px 38px 6px 38px;
+  box-shadow:0 -4px 10px rgba(0,0,0,.14);
+}
+.simple-ear span{
+  position:absolute;inset:8px;
+  background:#f5b7cc;
+  border-radius:8px 28px 4px 28px;
+}
+.simple-ear-left{left:22px;transform:rotate(-15deg)}
+.simple-ear-right{right:22px;transform:rotate(15deg) scaleX(-1)}
+.simple-face{position:absolute;inset:0}
+.simple-eyes{position:absolute;top:48px;left:0;right:0;display:flex;justify-content:center;gap:58px}
+.simple-eyes span{width:15px;height:15px;border-bottom:3.5px solid #3d2027;border-radius:50%}
+.simple-eyes span{animation:simpleBlink 4.2s infinite;}
+.simple-eyes span:nth-child(2){animation-delay:.12s;}
+@keyframes simpleBlink{0%,42%,46%,100%{height:15px;border-bottom-width:3.5px;}44%{height:3px;border-bottom-width:3.5px;}}
+.simple-face{animation:simpleFaceFloat 2.8s ease-in-out infinite;}
+@keyframes simpleFaceFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-2px)}}
+.simple-nose{position:absolute;top:68px;left:calc(50% - 5px);width:10px;height:7px;background:#e8898c;border-radius:50% 50% 80% 80%}
+.simple-whiskers{position:absolute;top:55px;width:42px;display:flex;flex-direction:column;gap:5px}
+.simple-whiskers i{display:block;width:28px;height:2px;background:rgba(61,32,39,.38);border-radius:2px}
+.simple-whiskers-left{left:12px}.simple-whiskers-left i:first-child{transform:rotate(8deg)}.simple-whiskers-left i:last-child{transform:rotate(-5deg)}
+.simple-whiskers-right{right:12px}.simple-whiskers-right i:first-child{transform:rotate(-8deg)}.simple-whiskers-right i:last-child{transform:rotate(5deg)}
+.simple-blush{position:absolute;top:74px;width:17px;height:10px;background:rgba(232,137,140,.42);border-radius:50%;filter:blur(1px)}
+.simple-blush-left{left:38px}.simple-blush-right{right:38px}
+.simple-candle-wrap{position:absolute;left:50%;top:-58px;transform:translateX(-50%);z-index:12}
+.simple-candle{position:relative;width:16px;height:60px;border-radius:8px;background:repeating-linear-gradient(45deg,#fff 0 6px,#e8898c 6px 12px);box-shadow:0 4px 8px rgba(0,0,0,.25)}
+.simple-wick{position:absolute;top:-8px;left:50%;transform:translateX(-50%);width:3px;height:9px;background:#333}
+.simple-flame{position:absolute;top:-36px;left:50%;transform:translateX(-50%);width:23px;height:33px;background:radial-gradient(circle at 50% 80%,#fff 0%,#ffdf6d 35%,#ff7b00 70%,transparent 100%);border-radius:50% 50% 35% 35%;filter:drop-shadow(0 0 14px #ffb703);animation:simpleFlame .15s ease-in-out infinite alternate}
+.simple-flame.out{opacity:0;transform:translateX(-50%) scale(0);transition:all .35s ease}
+.simple-smoke{position:absolute;top:-25px;left:50%;width:8px;height:8px;background:rgba(220,220,220,.72);border-radius:50%;opacity:0}
+.simple-smoke.active{animation:simpleSmoke 1.2s ease-out forwards}
+.simple-blow-sign{position:absolute;left:50%;top:-125px;transform:translateX(-50%) rotate(-4deg);z-index:20;font-family:Caveat,cursive;font-size:30px;font-weight:700;color:#ffe9a8;text-shadow:0 0 7px rgba(255,191,71,.9),0 0 18px rgba(255,148,37,.75),0 0 32px rgba(255,114,23,.5);animation:blowSignGlow 1.2s ease-in-out infinite alternate;pointer-events:none;white-space:nowrap}
+.simple-blow-sign.hide{opacity:0;transform:translateX(-50%) translateY(-10px) scale(.85);transition:.35s ease}
+@keyframes blowSignGlow{from{filter:drop-shadow(0 0 2px rgba(255,180,70,.55));opacity:.78}to{filter:drop-shadow(0 0 12px rgba(255,190,80,.95));opacity:1}}
+@keyframes simpleFlame{from{transform:translateX(-50%) scale(1)}to{transform:translateX(-50%) scale(1.08) rotate(2deg)}}
+@keyframes simpleSmoke{0%{opacity:.8;transform:translate(-50%,0) scale(1)}100%{opacity:0;transform:translate(-50%,-45px) scale(3);filter:blur(4px)}}
+#celebrateModal{
+  position:fixed !important;inset:0 !important;z-index:500 !important;
+  display:flex !important;align-items:center;justify-content:center;
+  background:rgba(12,5,12,.94) !important;backdrop-filter:blur(10px);
+  opacity:0 !important;pointer-events:none !important;transition:opacity .35s ease;
+}
+#celebrateModal.active{opacity:1 !important;pointer-events:auto !important}
+#celebrateModal .celebrate-card{
+  width:min(620px,90vw);padding:42px 28px;border-radius:30px;text-align:center;color:#fff;
+  background:linear-gradient(145deg,rgba(255,255,255,.10),rgba(255,255,255,.02));
+  border:1px solid rgba(255,235,205,.25);box-shadow:0 30px 80px rgba(0,0,0,.65);
+}
+
+
+/* =========================================================
+   SIMPLE CAKE FLOW — WISH POPUP + MIC ONLY
+   ========================================================= */
+#simpleWishPopup{
+  position:fixed;inset:0;z-index:120000;display:flex;align-items:center;justify-content:center;
+  padding:24px;opacity:0;visibility:hidden;pointer-events:none;
+  transition:opacity .35s ease,visibility .35s ease;
+}
+#simpleWishPopup.show{opacity:1;visibility:visible;pointer-events:auto}
+#simpleWishPopup.hide{opacity:0;visibility:hidden;pointer-events:none}
+.simple-wish-backdrop{
+  position:absolute;inset:0;background:rgba(8,3,10,.90);backdrop-filter:blur(9px);
+}
+.simple-wish-card{
+  position:relative;z-index:2;width:min(680px,92vw);padding:48px 28px 42px;
+  text-align:center;border-radius:32px;background:linear-gradient(145deg,#351b2d,#140b14);
+  border:1px solid rgba(255,235,205,.22);box-shadow:0 35px 100px rgba(0,0,0,.65);
+  transform:translateY(12px) scale(.97);transition:transform .4s ease;
+}
+#simpleWishPopup.show .simple-wish-card{transform:none}
+.simple-wish-icon{font-size:58px;margin-bottom:10px}
+.simple-wish-title{font-family:'Playfair Display',serif;color:#fff8ef;font-size:clamp(42px,7vw,72px);line-height:1}
+.simple-wish-card p{font-family:Caveat,cursive;color:#ffe8de;font-size:28px;line-height:1.2;margin:16px auto 0}
+#simpleMicStatus{min-height:28px;transition:opacity .25s ease}
+.simple-cake{animation:simpleCakeFloat 3.8s ease-in-out infinite}
+@keyframes simpleCakeFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
+@media(max-width:700px){
+  .simple-wish-card{padding:40px 20px 34px}
+  .simple-wish-card p{font-size:24px}
+}
 </style>
 </head>
 
@@ -4639,113 +4993,84 @@ button{
 
 
 <!-- =======================================================
-     IN-CAKE WISH PROMPT
+     SIMPLE BIRTHDAY CAKE
      ======================================================= -->
-<div class="cake-wish-prompt" id="cakeWishPrompt" aria-live="polite">
-  <div class="cake-wish-backdrop"></div>
-  <div class="cake-wish-card">
-    <div class="cake-wish-count">disappears in <i id="wishCountdown">3</i>s</div>
-    <div class="cake-wish-eyebrow">one little moment…</div>
-    <h2 class="cake-wish-title">Make a wish.</h2>
-    <p class="cake-wish-text">Take a breath, close your eyes for a second… then blow the candle out. ♡</p>
-    <div class="cake-wish-breath"><span class="cake-wish-dot"></span><span id="wishMicText">getting your candle ready…</span></div>
+
+<section class="screen" id="cakeIntro">
+  <div class="chapter text-center">
+    <span class="chapter-tag">Chapter 04</span>
+    <h2 class="font-['Playfair_Display'] text-4xl md:text-6xl my-2 text-rose-100">A Birthday Cake Just For You</h2>
+    <p class="font-['Caveat'] text-3xl text-amber-200 opacity-95">with a little extra love ♡</p>
+
+    <div class="simple-cake-wrap">
+      <div class="simple-cake-plate"></div>
+
+      <div class="simple-cake">
+        <div class="simple-cake-bottom">
+          <div class="simple-drip"></div>
+          <div class="simple-cake-name">Anjana</div>
+        </div>
+
+        <div class="simple-cake-top">
+          <div class="simple-ear simple-ear-left"><span></span></div>
+          <div class="simple-ear simple-ear-right"><span></span></div>
+
+          <div class="simple-face">
+            <div class="simple-eyes">
+              <span></span><span></span>
+            </div>
+            <div class="simple-nose"></div>
+            <div class="simple-whiskers simple-whiskers-left"><i></i><i></i></div>
+            <div class="simple-whiskers simple-whiskers-right"><i></i><i></i></div>
+            <div class="simple-blush simple-blush-left"></div>
+            <div class="simple-blush simple-blush-right"></div>
+          </div>
+
+          <div class="simple-blow-sign" id="simpleBlowSign">💨 BLOW ♡</div>
+          <div class="simple-candle-wrap">
+            <div class="simple-candle">
+              <div class="simple-wick"></div>
+              <div class="simple-flame" id="simpleFlame"></div>
+              <div class="simple-smoke" id="simpleSmoke"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <p class="font-['Caveat'] text-2xl text-rose-200 mt-2" id="simpleBlowText">
+      Make a wish and blow the candle. ♡
+    </p>
+
+    <p id="simpleMicStatus" class="font-['Caveat'] text-lg text-white/70 mt-4">
+      Close your eyes, make a wish… then blow gently toward the candle. 💨
+    </p>
+  </div>
+</section>
+
+<!-- =======================================================
+     MAKE A WISH POPUP — AUTO HIDES AFTER 4 SECONDS
+     ======================================================= -->
+<div id="simpleWishPopup" aria-hidden="true">
+  <div class="simple-wish-backdrop"></div>
+  <div class="simple-wish-card">
+    <div class="simple-wish-icon">✨ 🕯️ ✨</div>
+    <div class="simple-wish-title">Make a Wish ♡</div>
+    <p>Take a little moment for yourself…<br>then blow gently toward the candle.</p>
   </div>
 </div>
 
-
 <!-- =======================================================
-     CAKE BUILDING
+     CELEBRATION POPUP
      ======================================================= -->
-
-<section
-  class="screen"
-  id="cakeIntro"
->
-
-  <div class="chapter">
-
-    <div class="eyebrow">
-      birthday laboratory • build 01
-    </div>
-
-    <h2
-      style="
-        font-family:'Playfair Display';
-        font-size:clamp(44px,8vw,90px);
-        margin:0
-      "
-    >
-      Make your cake.
-    </h2>
-
-    <p
-      style="
-        opacity:.72;
-        max-width:560px;
-        margin:15px auto
-      "
-    >
-      Because apparently saying
-      “here is a cake” wasn't enough.
-    </p>
-
-    <div class="cake-wrap">
-
-      <div
-        class="cake-stage"
-        id="cakeStage"
-      >
-
-        <div class="layer l1"></div>
-        <div class="cream c1"></div>
-        <div class="layer l2"></div>
-        <div class="cream c2"></div>
-        <div class="layer l3"></div>
-
-        <div class="frost">
-          <div class="drip dr1"></div>
-          <div class="drip dr2"></div>
-          <div class="drip dr3"></div>
-          <div class="drip dr4"></div>
-
-          <div class="berry b1"></div>
-          <div class="berry b2"></div>
-          <div class="berry b3"></div>
-
-          <div class="chocdrop cd1"></div>
-          <div class="chocdrop cd2"></div>
-        </div>
-
-        <div
-          class="candle"
-          id="candle"
-        >
-          <div
-            class="flame"
-            id="flame"
-          ></div>
-        </div>
-
-      </div>
-
-    </div>
-
-    <div class="progress">
-      <i id="bar"></i>
-    </div>
-
-    <p
-      class="cake-auto-note"
-      id="buildHint"
-      aria-live="polite"
-    >
-      Wait… I'm making this one for you. ♡
-    </p>
-
+<div id="celebrateModal" aria-hidden="true">
+  <div class="celebrate-card">
+    <div style="font-size:70px">🎂✨🐱</div>
+    <h2 class="font-['Playfair_Display'] text-4xl text-amber-200 mb-2">HAPPY BIRTHDAY ANJANA!</h2>
+    <p class="font-['Caveat'] text-2xl text-rose-200 mb-6">You made a wish. May it come true. ♡</p>
+    <button class="cta text-lg" onclick="continueToCakeCut()">Continue to Cake Cutting ♡</button>
   </div>
-
-</section>
-
+</div>
 
 <!-- =======================================================
      CUT
@@ -4895,42 +5220,16 @@ button{
      ======================================================= -->
 
 <div id="celebrate">
-
-  <div
-    class="confetti"
-    id="confetti"
-  ></div>
-
-
+  <div class="confetti" id="confetti"></div>
   <div class="celebrate-inner">
-
-    <div style="font-size:90px">
-      🎉
-    </div>
-
-
-    <h2>
-      HAPPY<br>
-      BIRTHDAY
-    </h2>
-
-
-    <p>
-      Anjana, you made it. ❤️
-    </p>
-
-
-    <button
-      class="cta"
-      onclick="closeCelebrate()"
-    >
-      CUT THE CAKE →
-    </button>
-
+    <div class="celebrate-heart">♡</div>
+    <div style="font-size:82px">🎉</div>
+    <div class="eyebrow" style="color:#f6c66e;opacity:.84">wish made</div>
+    <h2>HAPPY<br>BIRTHDAY</h2>
+    <p>The candle heard you. The wish is yours now. ❤️</p>
+    <button class="cta" onclick="continueToCakeCut()">CONTINUE TO CAKE CUTTING ♡</button>
   </div>
-
 </div>
-
 
 
 <!-- =======================================================
@@ -5513,455 +5812,161 @@ function pop(symbol){
 }
 
 
+/* Safe UI sound used by cake controls */
+function playPopSound(){
+  try{
+    if(!audioCtx) audioCtx=new(window.AudioContext||window.webkitAudioContext)();
+    if(audioCtx.state==='suspended') audioCtx.resume().catch(()=>{});
+    const osc=audioCtx.createOscillator(),gain=audioCtx.createGain();
+    osc.type='sine';
+    osc.frequency.setValueAtTime(420,audioCtx.currentTime);
+    osc.frequency.exponentialRampToValueAtTime(780,audioCtx.currentTime+.09);
+    gain.gain.setValueAtTime(.08,audioCtx.currentTime);
+    gain.gain.exponentialRampToValueAtTime(.001,audioCtx.currentTime+.09);
+    osc.connect(gain);gain.connect(audioCtx.destination);
+    osc.start();osc.stop(audioCtx.currentTime+.09);
+  }catch(e){}
+}
+
 /* =========================================================
-   AUTOMATIC CAKE BUILDING
+   DEMO CAKE CONTROLS + AUTOMATIC BUILD + REAL MIC BLOW
    ========================================================= */
+let cakeBuildStarted=false,cakeWishTimer=null,cakeWishHideTimer=null;
+let multipleCandles=false,isCandleOut=false;
+let audioCtx=null,analyser=null,micStream=null,micSource=null,micRaf=null,blowStarted=false,blowStartTime=0,blowFrames=0,noiseFloor=.01;
 
-let built = 0;
-let cakeBuildStarted = false;
-
-const cakeSteps = [
+const cakeSteps=[
   "First layer… carefully. 🍰",
-  "A little filling. Chocolate, obviously. 🍫",
-  "Now the soft frosting. 🤍",
-  "A few little decorations… because she deserves them. 🍓",
-  "And finally… one candle for one very special birthday. 🕯️"
+  "A little filling, then the second layer. 🍫",
+  "Now the frosting, cat face & ears. 😸",
+  "A few sweet sprinkles… 🍬",
+  "And finally… one candle. 🕯️"
 ];
 
-function runAutomaticCakeBuild(){
-  if(cakeBuildStarted) return;
-  cakeBuildStarted = true;
-
-  const stage = $("cakeStage");
-  if(!stage) return;
-
-  stage.classList.add("auto-build");
-
-  // Reset all visual pieces before the reveal sequence.
-  stage.querySelectorAll(".layer,.cream,.frost,.candle").forEach(el=>{
-    el.style.opacity = "0";
-    el.classList.remove(
-      "cake-piece-build",
-      "cake-soft-build",
-      "cake-candle-build"
-    );
-  });
-
-  stage.querySelectorAll(".berry,.chocdrop").forEach(el=>{
-    el.style.opacity = "0";
-    el.classList.remove("cake-decor-build");
-  });
-
-  $("bar").style.width = "0%";
-  $("buildHint").textContent = "I'm building it for you… ♡";
-
-  // 1 — Bottom sponge lands.
-  setTimeout(()=>{
-    const el = document.querySelector(".l1");
-    if(el){
-      el.style.opacity = "1";
-      el.classList.add("cake-piece-build");
-    }
-    $("bar").style.width = "16%";
-    $("buildHint").textContent = cakeSteps[0];
-  }, 450);
-
-  // 2 — Filling spreads and second sponge drops in.
-  setTimeout(()=>{
-    const cream = document.querySelector(".c1");
-    const layer = document.querySelector(".l2");
-
-    if(cream){
-      cream.style.opacity = "1";
-      cream.classList.add("cake-soft-build");
-    }
-    if(layer){
-      layer.style.opacity = "1";
-      layer.classList.add("cake-piece-build");
-    }
-
-    $("bar").style.width = "34%";
-    $("buildHint").textContent = cakeSteps[1];
-  }, 1550);
-
-  // 3 — Second filling, then top sponge.
-  setTimeout(()=>{
-    const cream = document.querySelector(".c2");
-    const layer = document.querySelector(".l3");
-
-    if(cream){
-      cream.style.opacity = "1";
-      cream.classList.add("cake-soft-build");
-    }
-    if(layer){
-      layer.style.opacity = "1";
-      layer.classList.add("cake-piece-build");
-    }
-
-    $("bar").style.width = "51%";
-    $("buildHint").textContent = "One more layer… almost pretty enough. ✨";
-  }, 2650);
-
-  // 4 — Frosting arrives as a soft spreading cap.
-  setTimeout(()=>{
-    const el = document.querySelector(".frost");
-    if(el){
-      el.style.opacity = "1";
-      el.classList.add("cake-soft-build");
-    }
-
-    $("bar").style.width = "68%";
-    $("buildHint").textContent = cakeSteps[2];
-  }, 3750);
-
-  // 5 — Each decoration pops in separately.
-  setTimeout(()=>{
-    document.querySelectorAll(".berry,.chocdrop").forEach((el,i)=>{
-      setTimeout(()=>{
-        el.style.opacity = "1";
-        el.classList.add("cake-decor-build");
-      }, i * 150);
-    });
-
-    $("bar").style.width = "84%";
-    $("buildHint").textContent = cakeSteps[3];
-  }, 4750);
-
-  // 6 — Candle is placed last, then the real microphone moment begins.
-  setTimeout(()=>{
-    const el = document.querySelector(".candle");
-    if(el){
-      el.style.opacity = "1";
-      el.classList.add("cake-candle-build");
-    }
-
-    $("bar").style.width = "100%";
-    $("buildHint").textContent = cakeSteps[4];
-  }, 5750);
-
-  setTimeout(()=>{
-    // Keep the user in the cake scene. Show the wish/blow prompt briefly,
-    // while preparing the microphone in the background.
-    showCakeWishPrompt();
-    startBlow();
-  }, 6850);
+function setCakeFlavor(flavor,btn){
+  playPopSound();
+  document.querySelectorAll('#cakeIntro .flavor-btn').forEach(b=>b.classList.remove('active'));
+  if(btn)btn.classList.add('active');
+  const root=document.documentElement;
+  const map={
+    rose:{base:'#e5989b',drip:'#f5b7cc',top:'#fff8ef'},
+    choc:{base:'#5a2e26',drip:'#793f34',top:'#ead8ca'},
+    matcha:{base:'#7d9d73',drip:'#a3c997',top:'#f4f0df'},
+    berry:{base:'#8e7dbe',drip:'#b4a5df',top:'#f3eaf7'},
+    vanilla:{base:'#f4a261',drip:'#e9c46a',top:'#fff4d6'}
+  };
+  if(map[flavor]){root.style.setProperty('--cake-base',map[flavor].base);root.style.setProperty('--cake-drip',map[flavor].drip);root.style.setProperty('--cake-top-base',map[flavor].top)}
 }
 
-// Works whether she reaches the cake by the button or by scrolling.
-const cakeObserver = new IntersectionObserver(entries=>{
-  if(entries.some(entry=>entry.isIntersecting && entry.intersectionRatio > .35)){
-    runAutomaticCakeBuild();
-    cakeObserver.disconnect();
+function setCatExpression(expr,btn){
+  playPopSound();
+  const faceEl=$("catFaceElement");
+  if(faceEl)faceEl.className='cat-face '+expr;
+  if(btn){
+    btn.parentElement.querySelectorAll('.option-btn').forEach(b=>{if(['happy','wink','starry','sleepy'].some(e=>b.getAttribute('onclick')?.includes(e)))b.classList.remove('active')});
+    btn.classList.add('active');
   }
-},{threshold:[.35,.55]});
-
-const cakeSection = $("cakeIntro");
-if(cakeSection){
-  cakeObserver.observe(cakeSection);
 }
 
+function toggleCandleCount(btn){
+  playPopSound();
+  multipleCandles=!multipleCandles;
+  if(btn)btn.classList.toggle('active');
+  const group=$("candlesGroup");if(!group)return;
+  const candle=()=>'<div class="cake-candle"><div class="candle-wick"></div><div class="candle-flame"></div><div class="smoke-particle"></div></div>';
+  group.innerHTML=multipleCandles?candle()+candle()+candle():candle();
+  isCandleOut=false;
+  document.getElementById('blowInstruction').innerText='Make a wish and blow out the candles! ✨';
+}
 
-/* =========================================================
-   IN-CAKE WISH PROMPT
-   ========================================================= */
-let cakeWishTimer = null;
-let cakeWishHideTimer = null;
+function toggleToppings(btn){
+  playPopSound();
+  if(btn)btn.classList.toggle('active');
+  const toppings=$("toppingsLayer");if(toppings)toppings.classList.toggle('active');
+}
+
+function showCakePart(el){
+  if(!el)return;
+  el.classList.remove('show');
+  requestAnimationFrame(()=>el.classList.add('show'));
+}
+
+function runAutomaticCakeBuild(){
+  if(cakeBuildStarted)return;
+  cakeBuildStarted=true;
+  const stage=$("cakeStage");if(!stage)return;
+  stage.querySelectorAll('.cake-built-part,.candles-group,.toppings-layer').forEach(el=>el.classList.remove('show'));
+  document.querySelectorAll('#cakeIntro .candle-flame').forEach(f=>f.classList.remove('out'));
+  document.querySelectorAll('#cakeIntro .smoke-particle').forEach(s=>s.classList.remove('active'));
+  $("bar").style.width='0%';$("buildHint").textContent="I'm making this one for you… ♡";
+
+  setTimeout(()=>{showCakePart($("cakeBottomTier"));$("bar").style.width='20%';$("buildHint").textContent=cakeSteps[0]},450);
+  setTimeout(()=>{showCakePart($("cakeTopTier"));$("bar").style.width='42%';$("buildHint").textContent=cakeSteps[1]},1450);
+  setTimeout(()=>{$("bar").style.width='65%';$("buildHint").textContent=cakeSteps[2]},2450);
+  setTimeout(()=>{$("toppingsLayer").classList.add('active');$("bar").style.width='82%';$("buildHint").textContent=cakeSteps[3]},3350);
+  setTimeout(()=>{$("candlesGroup").classList.add('show');$("bar").style.width='100%';$("buildHint").textContent=cakeSteps[4]},4350);
+  setTimeout(()=>{showCakeWishPrompt();startBlow()},5350);
+}
+
+const cakeObserver=('IntersectionObserver' in window)?new IntersectionObserver(entries=>{if(entries.some(e=>e.isIntersecting&&e.intersectionRatio>.20)){runAutomaticCakeBuild();cakeObserver.disconnect()}},{threshold:[.2,.35]}):null;
+if($("cakeIntro")&&cakeObserver) cakeObserver.observe($("cakeIntro"));
+setTimeout(()=>{if(!cakeBuildStarted && $("cakeIntro")) runAutomaticCakeBuild();},900);
 
 function showCakeWishPrompt(){
-  const prompt = $("cakeWishPrompt");
-  if(!prompt) return;
-
-  clearInterval(cakeWishTimer);
-  clearTimeout(cakeWishHideTimer);
-
-  const count = $("wishCountdown");
-  const micText = $("wishMicText");
-  let remaining = 3;
-
-  if(count) count.textContent = remaining;
-  if(micText){
-    micText.textContent = "listen closely… then blow 💨";
-  }
-
-  prompt.classList.remove("hide");
-  prompt.classList.add("show");
-
-  cakeWishTimer = setInterval(()=>{
-    remaining--;
-    if(count) count.textContent = Math.max(0, remaining);
-    if(remaining <= 0){
-      clearInterval(cakeWishTimer);
-      cakeWishTimer = null;
-    }
-  },1000);
-
-  cakeWishHideTimer = setTimeout(()=>{
-    hideCakeWishPrompt();
-  },3000);
+  const p=$("cakeWishPrompt");if(!p)return;clearInterval(cakeWishTimer);clearTimeout(cakeWishHideTimer);
+  let n=3;const count=$("wishCountdown"),txt=$("wishMicText");if(count)count.textContent='3';if(txt)txt.textContent='listen closely… then blow 💨';
+  p.classList.remove('hide');p.classList.add('show');
+  cakeWishTimer=setInterval(()=>{n--;if(count)count.textContent=String(Math.max(0,n));if(n<=0){clearInterval(cakeWishTimer);cakeWishTimer=null}},1000);
+  cakeWishHideTimer=setTimeout(hideCakeWishPrompt,3000);
 }
-
-function hideCakeWishPrompt(){
-  const prompt = $("cakeWishPrompt");
-  if(!prompt) return;
-  clearInterval(cakeWishTimer);
-  cakeWishTimer = null;
-  prompt.classList.remove("show");
-  prompt.classList.add("hide");
-  setTimeout(()=>prompt.classList.remove("hide"),500);
-}
-
-/* =========================================================
-   BLOW DETECTION
-   ========================================================= */
-
-
-let audioCtx;
-let analyser;
-let micStream;
-let blowStarted = false;
-let blowStartTime = 0;
-let blowFrames = 0;
-let lastBlowPower = 0;
+function hideCakeWishPrompt(){const p=$("cakeWishPrompt");if(!p)return;clearInterval(cakeWishTimer);cakeWishTimer=null;clearTimeout(cakeWishHideTimer);p.classList.remove('show');p.classList.add('hide');setTimeout(()=>p.classList.remove('hide'),400);if($("buildHint"))$("buildHint").textContent='Your wish is waiting… blow gently toward the candle. 💨'}
 
 async function startBlow(){
-  if(blowStarted) return;
-
-  if(!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia){
-    $("micStatus").textContent =
-      "Real blow detection needs microphone access. Open the site from HTTPS or localhost.";
-    return;
-  }
-
+  if(blowStarted||isCandleOut)return true;
+  if(!navigator.mediaDevices?.getUserMedia){if($("buildHint"))$("buildHint").textContent='Microphone needs localhost or HTTPS.';return false}
   try{
-    micStream = await navigator.mediaDevices.getUserMedia({
-      audio:{
-        echoCancellation:false,
-        noiseSuppression:false,
-        autoGainControl:false
-      }
-    });
-
-    audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-    if(audioCtx.state === "suspended"){
-      await audioCtx.resume().catch(()=>{});
-    }
-
-    const src = audioCtx.createMediaStreamSource(micStream);
-    analyser = audioCtx.createAnalyser();
-    analyser.fftSize = 1024;
-    analyser.smoothingTimeConstant = .18;
-    src.connect(analyser);
-
-    blowStarted = true;
-    blowFrames = 0;
-    blowStartTime = 0;
-    lastBlowPower = 0;
-
-    $("micStatus").textContent =
-      "Microphone ready. Blow toward the candle… 💨";
-    const wishMicText = $("wishMicText");
-    if(wishMicText) wishMicText.textContent = "microphone ready — blow 💨";
-    $("micStatus").classList.add("real-blow-ready");
-
-    detectBlow();
-  }
-  catch(error){
-    console.error("Microphone error:", error);
-    $("micStatus").textContent =
-      "Please allow microphone access. The candle needs a real breath to go out. 💨";
-    const wishMicText = $("wishMicText");
-    if(wishMicText) wishMicText.textContent = "allow microphone access to blow 💨";
-  }
+    micStream=await navigator.mediaDevices.getUserMedia({audio:{echoCancellation:false,noiseSuppression:false,autoGainControl:false,channelCount:1}});
+    audioCtx=new(window.AudioContext||window.webkitAudioContext)();if(audioCtx.state==='suspended')await audioCtx.resume().catch(()=>{});
+    micSource=audioCtx.createMediaStreamSource(micStream);analyser=audioCtx.createAnalyser();analyser.fftSize=1024;analyser.smoothingTimeConstant=.04;micSource.connect(analyser);
+    blowStarted=true;blowStartTime=0;blowFrames=0;noiseFloor=.01;
+    const micBtn=$("micBtn");if(micBtn)micBtn.innerHTML='<i class="fa-solid fa-microphone-lines text-green-400"></i> Listening... Blow now!';
+    detectBlow();return true;
+  }catch(err){console.error('Microphone error',err);if($("buildHint"))$("buildHint").textContent='Please allow microphone access, then blow toward the candle. 💨';return false}
 }
 
 function detectBlow(){
-  if(!blowStarted || !analyser || !audioCtx) return;
-
-  const timeData = new Uint8Array(analyser.fftSize);
-  const freqData = new Uint8Array(analyser.frequencyBinCount);
-
-  analyser.getByteTimeDomainData(timeData);
-  analyser.getByteFrequencyData(freqData);
-
-  let sum = 0;
-  let zeroCrossings = 0;
-  let previous = (timeData[0] - 128) / 128;
-
-  for(let i=0;i<timeData.length;i++){
-    const x = (timeData[i] - 128) / 128;
-    sum += x*x;
-
-    if((x >= 0 && previous < 0) || (x < 0 && previous >= 0)){
-      zeroCrossings++;
-    }
-
-    previous = x;
-  }
-
-  const rms = Math.sqrt(sum / timeData.length);
-  const zcr = zeroCrossings / timeData.length;
-
-  // Breath noise lives mostly in the low/mid audio band.
-  const nyquist = audioCtx.sampleRate / 2;
-  const lowBin = Math.max(1, Math.floor((180 / nyquist) * freqData.length));
-  const highBin = Math.min(
-    freqData.length - 1,
-    Math.ceil((4200 / nyquist) * freqData.length)
-  );
-
-  let bandSum = 0;
-  let bandCount = 0;
-
-  for(let i=lowBin;i<=highBin;i++){
-    bandSum += freqData[i];
-    bandCount++;
-  }
-
-  const bandAvg = bandCount ? bandSum / bandCount / 255 : 0;
-
-  const power = Math.min(
-    1,
-    rms * 3.0 + bandAvg * 1.45
-  );
-
-  lastBlowPower += (power - lastBlowPower) * .34;
-
-  const meter = $("blowMeter");
-  if(meter){
-    meter.style.width = Math.round(lastBlowPower * 100) + "%";
-  }
-
-  const flame = $("flame");
-  if(flame){
-    flame.classList.toggle("blowing", lastBlowPower > .20);
-  }
-
-  // A real breath should be loud, noisy and relatively unvoiced.
-  const breathLike =
-    rms > .072 &&
-    bandAvg > .050 &&
-    zcr > .052;
-
-  if(breathLike && lastBlowPower > .20){
-    if(!blowStartTime){
-      blowStartTime = performance.now();
-    }
-    blowFrames++;
-  }else{
-    blowFrames = Math.max(0, blowFrames - 2);
-    if(blowFrames === 0){
-      blowStartTime = 0;
-    }
-  }
-
-  const sustainedMs =
-    blowStartTime ? performance.now() - blowStartTime : 0;
-
-  // Require a sustained breath, not a random click, word or short sound.
-  if(blowFrames > 12 && sustainedMs > 420){
-    completeRealBlow();
-    return;
-  }
-
-  requestAnimationFrame(detectBlow);
+  if(!blowStarted||!analyser||isCandleOut)return;
+  const td=new Uint8Array(analyser.fftSize),fd=new Uint8Array(analyser.frequencyBinCount);analyser.getByteTimeDomainData(td);analyser.getByteFrequencyData(fd);
+  let sum=0,peak=0,zcr=0,prev=(td[0]-128)/128;
+  for(let i=0;i<td.length;i++){const x=(td[i]-128)/128;sum+=x*x;peak=Math.max(peak,Math.abs(x));if((x>=0&&prev<0)||(x<0&&prev>=0))zcr++;prev=x}
+  const rms=Math.sqrt(sum/td.length),z=zcr/td.length;let total=0,high=0;for(let i=0;i<fd.length;i++){total+=fd[i];if(i>fd.length*.28)high+=fd[i]}
+  const highRatio=total?high/total:0;
+  if(!blowStartTime)noiseFloor=noiseFloor*.995+rms*.005;
+  const strong=rms>Math.max(.04,noiseFloor*2+.01)&&peak>.07;const airy=z>.014||highRatio>.24;const breath=strong&&airy;
+  document.querySelectorAll('#cakeIntro .candle-flame').forEach(flame=>{const power=Math.min(1,Math.max(0,rms-noiseFloor)/.14);flame.classList.toggle('blowing',power>.025)});
+  if(breath){if(!blowStartTime)blowStartTime=performance.now();blowFrames++}else{blowFrames=Math.max(0,blowFrames-1);if(blowFrames===0)blowStartTime=0}
+  const sustained=blowStartTime?performance.now()-blowStartTime:0;
+  if((blowFrames>=6&&sustained>=220)||(blowFrames>=3&&sustained>=500&&rms>.075)){completeRealBlow();return}
+  micRaf=requestAnimationFrame(detectBlow);
 }
+
+function stopMicrophone(){if(micRaf){cancelAnimationFrame(micRaf);micRaf=null}if(micStream){micStream.getTracks().forEach(t=>t.stop());micStream=null}if(audioCtx){audioCtx.close().catch(()=>{});audioCtx=null}analyser=null;micSource=null}
 
 function completeRealBlow(){
-  blowStarted = false;
-
-  if(micStream){
-    micStream.getTracks().forEach(track=>track.stop());
-  }
-
-  if(audioCtx){
-    audioCtx.close().catch(()=>{});
-  }
-
-  const flame = $("flame");
-  if(flame){
-    flame.classList.remove("blowing");
-    flame.classList.add("off");
-  }
-
-  const meter = $("blowMeter");
-  if(meter){
-    meter.style.width = "100%";
-  }
-
-  $("micStatus").textContent =
-    "Candle blown out! ✨";
-
-  hideCakeWishPrompt();
-
-  const candle = $("candle");
-  if(candle){
-    candle.animate(
-      [
-        {transform:"translateX(-50%) rotate(0deg)"},
-        {transform:"translateX(-50%) rotate(-7deg)"},
-        {transform:"translateX(-50%) rotate(4deg)"},
-        {transform:"translateX(-50%) rotate(0deg)"}
-      ],
-      {duration:700,easing:"ease-out"}
-    );
-  }
-
-  setTimeout(()=>triggerBlowCelebration(), 850);
+  if(!blowStarted||isCandleOut)return;
+  blowStarted=false;stopMicrophone();blowOutCandle(true);
 }
 
-/* =========================================================
-   BLOW / CONFETTI
-   ========================================================= */
-
-function triggerBlowCelebration(){
-  if(micStream){
-    micStream.getTracks().forEach(t=>t.stop());
-    micStream=null;
-  }
-  const burst=document.createElement("div");
-  burst.className="blow-burst";
-  document.body.appendChild(burst);
-  const colors=["#f6c66e","#ef8d91","#fff","#9ec5a7","#c8a7db","#ffd9a8"];
-  for(let i=0;i<68;i++){
-    const p=document.createElement("i");
-    const a=Math.random()*Math.PI*2;
-    const radius=90+Math.random()*360;
-    p.className="blow-particle";
-    p.style.setProperty("--dx",Math.cos(a)*radius+"px");
-    p.style.setProperty("--dy",Math.sin(a)*radius+"px");
-    p.style.setProperty("--rot",(Math.random()*760-380)+"deg");
-    p.style.setProperty("--pc",colors[i%colors.length]);
-    p.style.width=(5+Math.random()*7)+"px";
-    p.style.height=(5+Math.random()*12)+"px";
-    burst.appendChild(p);
-  }
-  setTimeout(()=>burst.remove(),1500);
-  const flame=$("flame"); if(flame) flame.classList.add("off");
-  const meter=$("blowMeter"); if(meter) meter.style.width="100%";
-  const status=$("micStatus"); if(status) status.textContent="Candle blown out! ✨";
-  $("celebrate").classList.add("show");
-  const song=$("song"); if(song) song.play().catch(()=>{});
-  clearTimeout(window.__cakeCutTimer);
-  window.__cakeCutTimer=setTimeout(()=>closeCelebrate(),4300);
-}
-function fakeBlow(){ triggerBlowCelebration(); }
-
-/* =========================================================
-   CLOSE CELEBRATION
-   ========================================================= */
-
-function closeCelebrate(){
-  $("celebrate").classList.remove("show");
-  $("cut").style.display="flex";
-  $("cut").scrollIntoView({behavior:"smooth"});
-  setTimeout(()=>{
-    const cake=$("cutCake"), line=$("cutLine"), slice=$("cakeSlicePop"), knife=$("knife");
-    if(cake) cake.classList.remove("is-cut");
-    if(line) line.classList.remove("active");
-    if(slice) slice.classList.remove("show");
-    if(knife){knife.style.left="";knife.style.top="";knife.style.right="5%";knife.classList.remove("dragging");}
-    cutDone=false;
-  },500);
+function blowOutCandle(fromMic=false){
+  if(isCandleOut)return;
+  isCandleOut=true;stopMicrophone();
+  document.querySelectorAll('#cakeIntro .candle-flame').forEach(f=>{f.classList.remove('blowing');f.classList.add('out')});
+  document.querySelectorAll('#cakeIntro .smoke-particle').forEach(s=>s.classList.add('active'));
+  const instruction=$("blowInstruction");if(instruction)instruction.innerText='Wishes made! Happy Birthday! ✨';
+  const micBtn=$("micBtn");if(micBtn)micBtn.innerHTML='<i class="fa-solid fa-check text-green-400"></i> Blown!';
+  hideCakeWishPrompt();if($("buildHint"))$("buildHint").textContent='Wish made. ♡';
+  if(typeof confetti==='function')confetti({particleCount:90,spread:80,origin:{y:.75}});
+  setTimeout(()=>{const celebrate=$("celebrate");if(celebrate)celebrate.classList.add('show');const song=$("song");if(song)song.play().catch(()=>{})},550);
 }
 
 /* =========================================================
@@ -6294,6 +6299,172 @@ document
 
   });
 
+
+
+/* =========================================================
+   SIMPLE CAKE FLOW — WISH POPUP -> MIC BLOW -> CELEBRATION -> CUT
+   ========================================================= */
+let simpleCandleOut=false;
+let simpleMicStream=null;
+let simpleAnalyser=null;
+let simpleAudioCtx=null;
+let simpleMicRaf=null;
+let simpleWishTimer=null;
+let simpleCakeStarted=false;
+
+function simpleShowWishPopup(){
+  const p=document.getElementById('simpleWishPopup');
+  if(!p)return;
+  clearTimeout(simpleWishTimer);
+  p.classList.remove('hide');
+  p.classList.add('show');
+  p.setAttribute('aria-hidden','false');
+  simpleWishTimer=setTimeout(()=>{
+    p.classList.remove('show');
+    p.classList.add('hide');
+    p.setAttribute('aria-hidden','true');
+  },4000);
+}
+
+function simpleStopMic(){
+  if(simpleMicRaf){cancelAnimationFrame(simpleMicRaf);simpleMicRaf=null;}
+  if(simpleMicStream){simpleMicStream.getTracks().forEach(t=>t.stop());simpleMicStream=null;}
+  if(simpleAudioCtx){simpleAudioCtx.close().catch(()=>{});simpleAudioCtx=null;}
+  simpleAnalyser=null;
+}
+
+async function simpleStartMic(){
+  if(simpleCandleOut || simpleMicStream)return;
+  const status=document.getElementById('simpleMicStatus');
+  try{
+    if(!navigator.mediaDevices?.getUserMedia){
+      if(status)status.textContent='Microphone needs HTTPS or localhost. 💨';
+      return;
+    }
+    simpleMicStream=await navigator.mediaDevices.getUserMedia({
+      audio:{echoCancellation:false,noiseSuppression:false,autoGainControl:false,channelCount:1}
+    });
+    simpleAudioCtx=new (window.AudioContext||window.webkitAudioContext)();
+    if(simpleAudioCtx.state==='suspended')await simpleAudioCtx.resume().catch(()=>{});
+    const source=simpleAudioCtx.createMediaStreamSource(simpleMicStream);
+    simpleAnalyser=simpleAudioCtx.createAnalyser();
+    simpleAnalyser.fftSize=1024;
+    simpleAnalyser.smoothingTimeConstant=.05;
+    source.connect(simpleAnalyser);
+    if(status)status.textContent='Listening… blow gently toward the candle. 💨';
+    simpleDetectMic();
+  }catch(err){
+    console.error(err);
+    if(status)status.textContent='Please allow microphone access, then blow gently toward the candle. 💨';
+  }
+}
+
+function simpleDetectMic(){
+  if(!simpleMicStream||!simpleAnalyser||simpleCandleOut)return;
+  const data=new Uint8Array(simpleAnalyser.fftSize);
+  simpleAnalyser.getByteTimeDomainData(data);
+  let sum=0,peak=0,zcr=0,prev=(data[0]-128)/128;
+  for(let i=0;i<data.length;i++){
+    const x=(data[i]-128)/128;
+    sum+=x*x;
+    peak=Math.max(peak,Math.abs(x));
+    if((x>=0&&prev<0)||(x<0&&prev>=0))zcr++;
+    prev=x;
+  }
+  const rms=Math.sqrt(sum/data.length);
+  const airy=(zcr/data.length)>.012;
+  const breath=rms>.055 && peak>.09 && airy;
+  const flame=document.getElementById('simpleFlame');
+  if(flame){
+    flame.style.transform=breath?'translateX(-50%) skewX(-14deg) scaleX(.86)':'translateX(-50%)';
+  }
+  if(breath){
+    simpleBlowCandle();
+    return;
+  }
+  simpleMicRaf=requestAnimationFrame(simpleDetectMic);
+}
+
+function simpleBlowCandle(){
+  if(simpleCandleOut)return;
+  simpleCandleOut=true;
+  simpleStopMic();
+  const flame=document.getElementById('simpleFlame');
+  if(flame)flame.classList.add('out');
+  const smoke=document.getElementById('simpleSmoke');
+  if(smoke)smoke.classList.add('active');
+  const sign=document.getElementById('simpleBlowSign');
+  if(sign)sign.classList.add('hide');
+  const msg=document.getElementById('simpleBlowText');
+  if(msg)msg.textContent='Wish made. ♡';
+  const status=document.getElementById('simpleMicStatus');
+  if(status)status.textContent='✨ Your wish is on its way. ✨';
+  try{
+    if(typeof confetti==='function'){
+      confetti({particleCount:180,spread:110,origin:{y:.62},startVelocity:42});
+      setTimeout(()=>confetti({particleCount:90,spread:75,origin:{y:.35}}),220);
+    }
+  }catch(e){}
+  setTimeout(()=>{
+    // Use the dedicated full-screen celebration layer.
+    const fullCelebrate=document.getElementById('celebrate');
+    if(fullCelebrate){
+      fullCelebrate.classList.add('show');
+      fullCelebrate.setAttribute('aria-hidden','false');
+      fullCelebrate.scrollIntoView?.({block:'center',behavior:'instant'});
+    }
+    const oldModal=document.getElementById('celebrateModal');
+    if(oldModal){
+      oldModal.classList.remove('active');
+      oldModal.setAttribute('aria-hidden','true');
+    }
+    const song=document.getElementById('song');
+    if(song)song.play().catch(()=>{});
+  },450);
+}
+
+function continueToCakeCut(){
+  const oldModal=document.getElementById('celebrateModal');
+  if(oldModal){oldModal.classList.remove('active');oldModal.setAttribute('aria-hidden','true');}
+  const fullCelebrate=document.getElementById('celebrate');
+  if(fullCelebrate){fullCelebrate.classList.remove('show');fullCelebrate.setAttribute('aria-hidden','true');}
+  const cut=document.getElementById('cut');
+  if(cut){
+    cut.style.display='flex';
+    requestAnimationFrame(()=>cut.scrollIntoView({behavior:'smooth',block:'start'}));
+  }
+}
+
+function simpleStartCakeFlow(){
+  if(simpleCakeStarted)return;
+  const cake=document.getElementById('cakeIntro');
+  if(!cake)return;
+  simpleCakeStarted=true;
+  simpleCandleOut=false;
+  document.getElementById('simpleFlame')?.classList.remove('out');
+  document.getElementById('simpleSmoke')?.classList.remove('active');
+  document.getElementById('simpleBlowSign')?.classList.remove('hide');
+  simpleShowWishPopup();
+  // Start listening immediately; the wish popup simply stays visible for 4 seconds.
+  setTimeout(()=>simpleStartMic(),450);
+}
+
+const simpleCakeObserver=('IntersectionObserver' in window)
+  ?new IntersectionObserver(entries=>{
+      if(entries.some(e=>e.isIntersecting)){
+        simpleStartCakeFlow();
+        simpleCakeObserver.disconnect();
+      }
+    },{threshold:.3})
+  :null;
+
+window.addEventListener('load',()=>{
+  const cake=document.getElementById('cakeIntro');
+  if(cake&&simpleCakeObserver)simpleCakeObserver.observe(cake);
+  setTimeout(()=>{
+    if(!simpleCakeStarted&&cake&&cake.getBoundingClientRect().top<window.innerHeight*.9)simpleStartCakeFlow();
+  },700);
+});
 
 </script>
 
